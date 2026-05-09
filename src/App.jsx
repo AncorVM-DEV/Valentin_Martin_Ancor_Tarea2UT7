@@ -81,14 +81,15 @@ function App() {
     } = useSpeechRecognition({ commands: comandos });
 
     // Cada vez que cambia el transcript miro si hay alguna frase épica de anime
-    // que haya pronunciado, y si la hay, activo el easter egg
+    // que haya pronunciado, y si la hay, activo el easter egg.
+    // Uso el "titulo" como identificador único para no disparar el mismo egg dos veces seguidas.
     useEffect(() => {
         if (!transcript) return;
         const egg = buscarEasterEgg(transcript);
-        if (egg && egg.frase !== ultimoEasterRef.current) {
-            ultimoEasterRef.current = egg.frase;
+        if (egg && egg.titulo !== ultimoEasterRef.current) {
+            ultimoEasterRef.current = egg.titulo;
             setEasterActivo(egg);
-            setUltimoComando(`✨ ${egg.frase.toUpperCase()} ✨`);
+            setUltimoComando(`✨ ${egg.titulo.toUpperCase()} ✨`);
         }
     }, [transcript]);
 
