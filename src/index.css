@@ -1,0 +1,62 @@
+/* Aquí pongo los estilos generales del proyecto.
+   He montado una paleta oscura con neón porque me molaba el rollo cyberpunk
+   y queda mucho mejor que el típico fondo blanco aburrido. */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body, #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f0c29;
+    color: #e0e0e0;
+}
+
+/* Animación que uso cuando se activa un easter egg, hace un fundido épico */
+@keyframes aparecer-epico {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-10deg);
+        filter: blur(20px);
+    }
+    60% {
+        transform: scale(1.05) rotate(2deg);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+@keyframes pulso-aura {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 0, 80, 0.5),
+                    0 0 60px rgba(255, 0, 80, 0.3),
+                    0 0 100px rgba(255, 0, 80, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 0, 80, 0.8),
+                    0 0 80px rgba(255, 0, 80, 0.5),
+                    0 0 120px rgba(255, 0, 80, 0.4);
+    }
+}
+
+@keyframes texto-brillo {
+    0%, 100% { text-shadow: 0 0 10px #ff006e, 0 0 20px #ff006e, 0 0 30px #ff006e; }
+    50% { text-shadow: 0 0 20px #ff006e, 0 0 40px #ff006e, 0 0 60px #ff006e; }
+}
+
+@keyframes flotar-suave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
