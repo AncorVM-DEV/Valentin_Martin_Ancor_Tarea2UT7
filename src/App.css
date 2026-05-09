@@ -11,6 +11,9 @@
         radial-gradient(circle at 80% 70%, rgba(94, 234, 212, 0.2) 0%, transparent 50%),
         linear-gradient(135deg, #0f0c29 0%, #24243e 100%);
     overflow: hidden;
+    /* La transición la pongo aquí para que el efecto de Shinji (rotar 180º)
+       se note bien suave en lugar de un corte feo */
+    transition: transform 1.5s ease-in-out, filter 0.6s ease;
 }
 
 /* Pequeña cuadrícula de fondo para que se note el movimiento del personaje */
@@ -36,4 +39,81 @@
     color: #ff006e;
     text-align: center;
     padding: 20px;
+}
+
+/* ================================================================== */
+/*  EFECTOS ÉPICOS PARA LOS EASTER EGGS                                */
+/*  Cada clase se aplica al contenedor principal cuando se activa el   */
+/*  easter egg correspondiente. Le da rollo de "técnica activada".     */
+/* ================================================================== */
+
+/* SHINJI HIRAKO — Sakasama no Sekai (mundo invertido)
+   Le doy la vuelta entera a la pantalla, 180 grados como en el manga */
+.efecto-sakasama {
+    transform: rotate(180deg);
+}
+
+/* AIZEN KYŌKA SUIGETSU — la realidad se rompe como un cristal
+   Combino skew + blur pulsante para simular que la ilusión se está rompiendo */
+.efecto-cristal {
+    animation: cristal-roto 1.2s ease-in-out infinite;
+}
+
+@keyframes cristal-roto {
+    0%   { transform: skewX(0deg)  skewY(0deg);  filter: blur(0); }
+    20%  { transform: skewX(-4deg) skewY(2deg);  filter: blur(2px) hue-rotate(20deg); }
+    40%  { transform: skewX(3deg)  skewY(-3deg); filter: blur(1px) hue-rotate(-20deg); }
+    60%  { transform: skewX(-2deg) skewY(4deg);  filter: blur(3px) hue-rotate(40deg); }
+    80%  { transform: skewX(5deg)  skewY(-1deg); filter: blur(1px); }
+    100% { transform: skewX(0deg)  skewY(0deg);  filter: blur(0); }
+}
+
+/* GOJO — Muryōkūsho (Vacío Inconmensurable)
+   Los colores se invierten y parpadean como si tu cerebro no procesara nada */
+.efecto-vacio {
+    animation: vacio-parpadeo 1.4s steps(2, end) infinite;
+}
+
+@keyframes vacio-parpadeo {
+    0%, 100% { filter: invert(1) hue-rotate(180deg) brightness(1.2); }
+    50%      { filter: invert(0) brightness(0.5)   contrast(1.3); }
+}
+
+/* SUKUNA — Fukuma Mizushi (Santuario Malévolo)
+   Screen shake muy rápido + un tinte rojo sangre que palpita */
+.efecto-santuario {
+    animation: santuario-shake 0.12s linear infinite, santuario-tinte 1.6s ease-in-out infinite;
+}
+
+@keyframes santuario-shake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    20%      { transform: translate(-4px, 2px) rotate(-0.4deg); }
+    40%      { transform: translate(3px, -3px) rotate(0.5deg); }
+    60%      { transform: translate(-2px, 4px) rotate(-0.3deg); }
+    80%      { transform: translate(4px, 1px) rotate(0.6deg); }
+}
+
+@keyframes santuario-tinte {
+    0%, 100% { box-shadow: inset 0 0 80px 20px rgba(139, 0, 0, 0.4); }
+    50%      { box-shadow: inset 0 0 160px 60px rgba(220, 0, 30, 0.65); }
+}
+
+/* BANKAI ICHIGO — me invento un efecto a juego: relámpago azul oscuro */
+.efecto-bankai {
+    animation: bankai-flash 0.8s ease-in-out infinite;
+}
+
+@keyframes bankai-flash {
+    0%, 100% { box-shadow: inset 0 0 80px 10px rgba(0, 80, 255, 0.4); }
+    50%      { box-shadow: inset 0 0 200px 30px rgba(120, 220, 255, 0.7); }
+}
+
+/* YHWACH — The Almighty: el tiempo se distorsiona, todo en sepia/oro */
+.efecto-almighty {
+    animation: almighty-todopoderoso 2s ease-in-out infinite;
+}
+
+@keyframes almighty-todopoderoso {
+    0%, 100% { filter: sepia(0.7) brightness(1.1) saturate(1.4); }
+    50%      { filter: sepia(1)   brightness(1.4) saturate(1.8) hue-rotate(-10deg); }
 }

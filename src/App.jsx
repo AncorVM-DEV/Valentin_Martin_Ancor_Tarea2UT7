@@ -145,8 +145,12 @@ function App() {
         );
     }
 
+    // Si hay un easter egg activo le pego al contenedor principal su clase de efecto
+    // para que toda la pantalla haga la animación que toca (rotar, parpadear, temblar...)
+    const claseContenedor = `contenedor-app${easterActivo ? ` ${easterActivo.claseEfecto}` : ''}`;
+
     return (
-        <div className="contenedor-app">
+        <div className={claseContenedor}>
             {/* Si hay un easter egg activo lo muestro a pantalla completa */}
             {easterActivo && (
                 <OverlayEpico
